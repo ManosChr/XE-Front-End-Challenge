@@ -1,0 +1,52 @@
+:root {
+    --color-primary: #1e3f5a;
+    --color-primary-light-1: #52718A;
+    --color-primary-light-2: #32536F;
+    --color-primary-dark-1: #0C2940;
+    --color-primary-dark-2: #021728;
+    
+    --color-grey-light-1: #faf9f9;
+}
+
+/* Universal Selector */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    /* 1rem = 10px , 10px/16px = 62.5% */
+    font-size: 62.5%;    
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    /* color: var(--color-grey-light-1); */
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    margin: 1rem;
+}
+
+.banner {
+    flex: 1;
+    border: 1px solid black;
+}
+
+.logo {
+    flex: 1;
+    /* border: 1px solid black; */
+}
+
+.search {
+    flex: 8;
+    border: 1px solid black;
+}

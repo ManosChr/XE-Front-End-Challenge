@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>XE Front-End Challenge</title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./app.css">
+
     <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <!-- <style>
     .ui-autocomplete-loading {
@@ -19,30 +22,82 @@
         $( "<div>" ).text( message ).prependTo( "#log" );
         $( "#log" ).scrollTop( 0 );
       }
-   
-      $( "#birds" ).autocomplete({
-        source: "http://35.180.182.8/Search?keywords=" + this.value + "&language=en&limit=10",
+      
+    //   $( "#birds" ).autocomplete({
+    //     source: "http://35.180.182.8/Search?keywords=ath&language=en&limit=10",
+    //     minLength: 2,
+    //     select: function( event, ui ) {
+    //       log( "Selected: " + ui.item.name + " aka " + ui.item.country );
+    //     }
+    //   });
+      
+      // Detect the browser language
+      var userLang = (navigator.language || navigator.userLanguage).substring(0,2); 
+      console.log ("The browser language is: " + userLang);
+      
+      // Apply autocomplete to the text box
+      $("#birds").autocomplete({
+        source: function (request, response) {
+          // API Call
+          $.ajax({
+              url: "http://35.180.182.8/Search?keywords="+ this.term +"&language="+ userLang +"&limit=10",
+              data: { query: request.term },
+              success: function (data) {
+                // Enable the button functionality
+                $("#btn").prop( "disabled", false );
+                // TODO close spinner
+                // Transform the response to an array of objects including both value and label properties for each item
+                  var transformed = data.entries.map((e, index) => { return{ id:index, label:e.name }; });
+                  response(transformed);
+              },
+              error: function () {
+                // TODO close spinner
+                response([]);
+              }
+          });
+        },
         minLength: 2,
-        select: function( event, ui ) {
-          log( "Selected: " + ui.item.value + " aka " + ui.item.id );
-        }
+        delay: 500
       });
+      
+      $( "#btn" ).click(function() {
+        console.log( "Handler for .click() called." );
+        console.log( $("#birds").value );
+        window.location.href="https://www.google.com/search?q="+ $("#birds").val();
+      });
+
     } );
     </script>
   </head>
   <body>
    
-  <div class="ui-widget">
-    <label for="birds">Birds: </label>
-    <input id="birds">
-  </div>
-   
-  <div class="ui-widget" style="margin-top:2em; font-family:Arial">
-    Result:
-    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-  </div>
-   
-   
+    <div class="container">
+      <div class="banner">Banner Space</div>
+
+      <div class="logo">
+        <img src="./xe_logo.jpg" alt="xe_logo">
+      </div>
+
+      <div class="search">
+        <div class="search__message">What place are you looking for?</div>
+
+        <div class="search__box ui-widget">
+          <label for="birds">Birds: </label>
+          <input id="birds">
+        </div>
+
+        <div class="button">
+          <button id="btn" disabled>Click to Search</button>
+        </div>
+          
+        <!-- <div class="ui-widget" style="margin-top:2em; font-family:Arial">
+          Result:
+          <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+        </div> -->
+      </div>
+      
+    </div>
+ 
   </body>
   </html>
 
