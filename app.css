@@ -41,7 +41,7 @@ body {
 .container {
     display: flex;
     height: 100vh;
-    margin: 2rem;
+    padding: 2rem;
 }
 
 .banner {

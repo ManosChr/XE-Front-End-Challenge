@@ -17,7 +17,7 @@ $( function() {
     console.log ("The browser language is: " + userLang);
     
     // Apply autocomplete to the text box
-    $("#search__input").autocomplete({
+    var menu = $("#search__input").autocomplete({
       source: function (request, response) {
         // API Call
         $.ajax({
@@ -26,16 +26,19 @@ $( function() {
             success: function (data) {
 
                 if(data.entries.length !== 0) {
+                  // Event listener for when a menu item is selected
+                  $( "#search__input" ).on( "autocompleteselect", function( event, ui ) {
+                    console.log("selected item");
+                    console.log(ui.item);
                     // Enable the button functionality
                     $("#btn").prop( "disabled", false );
+                  } );
 
-                    var marginTop = 19.7 * data.entries.length;
-                    $("#btn").css("margin-top", marginTop);
+                  // Move the search button 
+                  var marginTop = 19.7 * data.entries.length;
+                  $("#btn").css("margin-top", marginTop);
                 }
-              
-
-
-            //   $('#btn').addClass('marginTop');
+            
               // TODO close spinner
               // Transform the response to an array of objects including both value and label properties for each item
                 var transformed = data.entries.map((e, index) => { return{ id:index, label:e.name }; });
@@ -58,10 +61,31 @@ $( function() {
         // $("#btn").css("margin-top", listHeight);
     });
     
+    // Event listener for when the autocomplete menu opens
     $( "#search__input" ).on( "autocompleteclose", function( event, ui ) {
         console.log("list closed");
         $("#btn").css("margin-top", "3rem");
     } );
+
+    // // Event listener for when a menu item is selected
+    // $( "#search__input" ).on( "autocompleteselect", function( event, ui ) {
+    //   console.log("selected item");
+    //   console.log(ui.item);
+    // } );
+
+    // Event listener for when input changes
+    // $( "#search__input" ).on( "autocompletechange", function( event, ui ) {
+    //   if(ui.item == null) {
+    //     // Disable the button functionality
+    //     $("#btn").prop( "disabled", true );
+    //   }
+    //   console.log("input change: ");
+    //   console.log(ui.item);
+    // } );
+
+    $( "#search__input" ).change(function() {
+      console.log( "Handler for .change() called." );
+    });
 
     $( "#btn" ).click(function() {
       console.log( "Handler for .click() called." );
