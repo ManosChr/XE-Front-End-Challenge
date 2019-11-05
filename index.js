@@ -29,7 +29,7 @@ $( function() {
                     // Enable the button functionality
                     $("#btn").prop( "disabled", false );
 
-                    var marginTop = 17.3 * data.entries.length;
+                    var marginTop = 19.7 * data.entries.length;
                     $("#btn").css("margin-top", marginTop);
                 }
               
@@ -60,7 +60,7 @@ $( function() {
     
     $( "#search__input" ).on( "autocompleteclose", function( event, ui ) {
         console.log("list closed");
-        $("#btn").css("margin-top", 0);
+        $("#btn").css("margin-top", "3rem");
     } );
 
     $( "#btn" ).click(function() {
