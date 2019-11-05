@@ -47,7 +47,8 @@ $( function() {
             error: function () {
               // TODO close spinner
               response([]);
-            }
+            },
+            timeout: 2000 // sets timeout to 2 seconds
         });
       },
       minLength: 2,
@@ -74,6 +75,16 @@ $( function() {
     // } );
 
     // Event listener for when input changes
+    $( "#search__input" ).on('input', function() {
+      console.log( "search input: " + $( "#search__input" ).val() );
+      if( $( "#search__input" ).val() === "" ) {
+        // Disable the button functionality
+        $("#btn").prop( "disabled", true );
+        console.log( "input null" );
+      }
+      console.log( "Handler for .change() called." );
+    });
+
     // $( "#search__input" ).on( "autocompletechange", function( event, ui ) {
     //   if(ui.item == null) {
     //     // Disable the button functionality
@@ -83,9 +94,18 @@ $( function() {
     //   console.log(ui.item);
     // } );
 
-    $( "#search__input" ).change(function() {
-      console.log( "Handler for .change() called." );
-    });
+    // $( "#search__input" ).change(function() {
+    //   console.log( "Handler for .change() called." );
+    // });
+
+    // $( "#search__input" ).on( "change", function() {
+    //   console.log( "Handler for .change() called." );
+    // } );
+
+    // $("body").on('change', '#search__input', function() {
+    //   // Does some stuff and logs the event to the console
+    //   console.log( "Handler for .change() called." );
+    // });
 
     $( "#btn" ).click(function() {
       console.log( "Handler for .click() called." );
