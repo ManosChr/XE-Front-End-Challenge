@@ -14,61 +14,9 @@
       background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
     }
     </style> -->
-    <script src="https://kit.fontawesome.com/834a772ba2.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $( function() {
-      function log( message ) {
-        $( "<div>" ).text( message ).prependTo( "#log" );
-        $( "#log" ).scrollTop( 0 );
-      }
-      
-    //   $( "#birds" ).autocomplete({
-    //     source: "http://35.180.182.8/Search?keywords=ath&language=en&limit=10",
-    //     minLength: 2,
-    //     select: function( event, ui ) {
-    //       log( "Selected: " + ui.item.name + " aka " + ui.item.country );
-    //     }
-    //   });
-      
-      // Detect the browser language
-      var userLang = (navigator.language || navigator.userLanguage).substring(0,2); 
-      console.log ("The browser language is: " + userLang);
-      
-      // Apply autocomplete to the text box
-      $("#birds").autocomplete({
-        source: function (request, response) {
-          // API Call
-          $.ajax({
-              url: "http://35.180.182.8/Search?keywords="+ this.term +"&language="+ userLang +"&limit=10",
-              data: { query: request.term },
-              success: function (data) {
-                // Enable the button functionality
-                $("#btn").prop( "disabled", false );
-                // TODO close spinner
-                // Transform the response to an array of objects including both value and label properties for each item
-                  var transformed = data.entries.map((e, index) => { return{ id:index, label:e.name }; });
-                  response(transformed);
-              },
-              error: function () {
-                // TODO close spinner
-                response([]);
-              }
-          });
-        },
-        minLength: 2,
-        delay: 500
-      });
-      
-      $( "#btn" ).click(function() {
-        console.log( "Handler for .click() called." );
-        console.log( $("#birds").value );
-        window.location.href="https://www.google.com/search?q="+ $("#birds").val();
-      });
-
-    } );
-    </script>
+    <script src="index.js"></script>
   </head>
   <body>
    
@@ -76,26 +24,28 @@
       <div class="banner">Banner Space</div>
 
       <div class="logo">
-        <img id="logo-icon" src="./xe_logo.jpg" alt="xe_logo">
+        <img id="logo-icon" src="./xe_logo_small.png" alt="xe_logo">
       </div>
 
       <div class="search">
-        
+        <div class="search__message">
+          <h1 class="header-1">What place are you looking for?</h1>
+        </div>
+
         <div class="search__box ui-widget">
-          <div class="search__message">What place are you looking for?</div>
           <!-- <svg class="icon icon-search"><use xlink:href="img/sprite.svg#icon-search"></use></svg> -->
           <img id="icon-search" src="./img/search.png" alt="search">
-          <!-- <i class="fas fa-search"></i> -->
+          
           <!-- <label for="birds">Birds: </label> -->
-          <input id="birds" type="text">
-          <!-- <i class="fas fa-microphone"></i> -->
+          <input id="search__input" type="text">
+          
           <img id="icon-mic" src="./img/mic.png" alt="mic">
           <!-- <svg class="icon icon-mic"><use xlink:href="#icon-mic"></use></svg> -->
         </div>
 
         <div class="results"></div>
 
-        <div class="button">
+        <div class="search__button">
           <button id="btn" disabled>Click to Search</button>
         </div>
           
