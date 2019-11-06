@@ -11,9 +11,10 @@ $( function() {
     
     $( ".search__input" ).on( "autocompleteopen", function( event, ui ) {
         console.log("list opened");
-        // var listHeight = $( "ui-id-1" ).height();
-        // console.log(listHeight);
-        // $("#btn").css("margin-top", listHeight);
+        // Calculate the menu height
+        var listHeight = $( "#ui-id-1" ).css( "height" );
+        // Move the search button under the menu
+        $(".btn").css("margin-top", listHeight);
     });
     
     // Event listener for when the autocomplete menu closes
@@ -57,21 +58,6 @@ $( function() {
                       // Enable the button functionality
                       $(".btn").prop( "disabled", false );
                     } );
-
-                    var marginTop;
-                    // Move the search button under the menu
-                    if ( $(window).width() > 1200 ) {
-                      // Desktop screen size
-                      marginTop = 19.7 * data.entries.length;
-                    } else if ( $(window).width() <= 1200 && $(window).width() > 900 ) {
-                      // Tablet landscape screen
-                      marginTop = 18.2 * data.entries.length;
-                    } else {
-                      // Tablet portable and Phone screen
-                      marginTop = 17.4 * data.entries.length;
-                    }
-                    
-                    $(".btn").css("margin-top", marginTop);
                   }
               
                 // Transform the response to an array of objects including both value and label properties for each item
