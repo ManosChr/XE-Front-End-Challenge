@@ -3,7 +3,7 @@ $( function() {
     var userLang = (navigator.language || navigator.userLanguage).substring(0,2); 
     console.log ("The browser language is: " + userLang);
     
-    if($(window).width() >= 1200){
+    if($(window).width() > 1200){
       autocompleteFunction(20);
     } else {
       autocompleteFunction(10);
@@ -58,8 +58,19 @@ $( function() {
                       $(".btn").prop( "disabled", false );
                     } );
 
+                    var marginTop;
                     // Move the search button under the menu
-                    var marginTop = 19.7 * data.entries.length;
+                    if ( $(window).width() > 1200 ) {
+                      // Desktop screen size
+                      marginTop = 19.7 * data.entries.length;
+                    } else if ( $(window).width() <= 1200 && $(window).width() > 900 ) {
+                      // Tablet landscape screen
+                      marginTop = 18.2 * data.entries.length;
+                    } else {
+                      // Tablet portable and Phone screen
+                      marginTop = 17.4 * data.entries.length;
+                    }
+                    
                     $(".btn").css("margin-top", marginTop);
                   }
               
