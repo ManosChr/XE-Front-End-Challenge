@@ -1,0 +1,62 @@
+.banner {
+    flex: 1;
+    border: 1px solid black;
+    text-align: center;
+
+    @include respond(tab-land) {    //width < 1200px
+        order: 3;
+        width: 95%;
+    }
+
+    @include respond(phone) {    //width < 600px
+        display: none;
+    }
+}
+
+.logo {
+    flex: 1;
+
+    &__icon {
+        height: 13rem;
+        padding: 0 2rem;
+    }
+
+    @include respond(tab-land) {    //width < 1200px
+        order: 1;
+        padding-bottom: 1rem;
+    }
+}
+
+.btn {
+    margin-top: 3rem;
+    background-color: $color-primary;
+    color: $color-grey-light-1;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 1.8rem 3rem;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+        background-color: $color-primary-light;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+        transform: translateY(-.1rem);
+    }
+    
+    &:active {
+        outline: none;
+        transform: translateY(-.05rem);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+    }
+    
+    &:focus { outline: none; }
+    
+    &:disabled { 
+        background-color: $color-grey-dark-2; 
+        transform: none;
+        box-shadow: none;
+        cursor: auto;
+    }
+}

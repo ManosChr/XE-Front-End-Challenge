@@ -6,7 +6,7 @@
     <title>XE Front-End Challenge</title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./app.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <!-- <style>
@@ -14,6 +14,8 @@
       background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
     }
     </style> -->
+    <!-- <script src="node_modules/jquery/src/jquery.js"></script>
+    <script src="node_modules/jquery-ui/ui/widgets/autocomplete.js"></script> -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="index.js"></script>
@@ -24,7 +26,7 @@
       <div class="banner">Banner Space</div>
 
       <div class="logo">
-        <img id="logo-icon" src="./xe_logo_small.png" alt="xe_logo">
+        <img class="logo__icon" src="./xe_logo_small.png" alt="xe_logo">
       </div>
 
       <div class="search">
@@ -32,21 +34,21 @@
           <h1 class="header-1">What place are you looking for?</h1>
         </div>
 
-        <div class="search__box ui-widget">
+        <div class="search__box">
           <!-- <svg class="icon icon-search"><use xlink:href="img/sprite.svg#icon-search"></use></svg> -->
-          <img id="icon-search" src="./img/search.png" alt="search">
+          <img class="search__icon--search" src="./img/search.png" alt="search">
           
           <!-- <label for="birds">Birds: </label> -->
-          <input id="search__input" type="text" placeholder="e.g. 'Athens', 'Barcelona', 'Los Angeles'">
+          <input class="search__input" type="text" placeholder="e.g. 'Athens', 'Barcelona', 'Los Angeles'">
           
-          <img id="icon-mic" src="./img/mic.png" alt="mic">
+          <img class="search__icon--mic" src="./img/mic.png" alt="mic">
           <!-- <svg class="icon icon-mic"><use xlink:href="#icon-mic"></use></svg> -->
         </div>
 
         <div class="results"></div>
 
         <div class="search__button">
-          <button id="btn" disabled>Click to Search</button>
+          <button class="btn" disabled>Click to Search</button>
         </div>
           
         <!-- <div class="ui-widget" style="margin-top:2em; font-family:Arial">

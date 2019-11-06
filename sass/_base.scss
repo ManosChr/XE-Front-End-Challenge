@@ -1,0 +1,72 @@
+// COLOR VARIABLES
+$color-primary: #ffb800;
+$color-primary-light: #fbc70c;
+
+$color-grey-light-1: #faf9f9;
+$color-grey-light-2: #f3f3f3;
+$color-grey-dark-1: #6a6a6a;
+$color-grey-dark-2: #9e9ea0;
+
+
+// FONT VARIABLES
+$font-primary: 'Open Sans', sans-serif;
+
+
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em;      // 1200px/16px = 75em
+$bp-large: 62.5em;      // 1000px/16px = 62.5em
+$bp-medium: 50em;       // 800px/16px = 50em
+$bp-small: 37.5em;      // 600px/16px = 37.5em
+
+
+// UNIVERSAL SELECTOR
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    /* 1rem = 10px , 10px/16px = 62.5% */
+    font-size: 62.5%;
+    
+    @include respond(tab-land) {    //width < 1200px
+        font-size: 56.25%;     //1rem = 9px => 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) {    //width < 900px
+        font-size: 50%;     //1rem = 8px => 8/16 = 50%
+    }
+}
+
+body {
+    font-family: $font-primary;
+    font-weight: 400;
+    font-size: 1.2rem;
+    /* background-color: $color-grey-light-2; */
+    color: $color-grey-dark-1;
+    min-height: 100vh;
+    background-image: linear-gradient(to right bottom, $color-grey-light-1, $color-grey-dark-2);
+    // background-size: cover;
+    // background-repeat: no-repeat;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    padding: 2rem;
+
+    @include respond(tab-land) {    //width < 1200px
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+::selection {
+    background-color: $color-primary;
+    color: #fff;
+}

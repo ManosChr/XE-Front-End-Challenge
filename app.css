@@ -33,9 +33,12 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
-    background-color: var(--color-grey-light-3);
+    /* background-color: var(--color-grey-light-3); */
     color: var(--color-grey-dark-1);
     min-height: 100vh;
+    background-image: linear-gradient(to right bottom, var(--color-grey-light-1), var(--color-grey-dark-2));
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .container {
@@ -123,13 +126,6 @@ body {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
 }
 
-/* #search__input {
-    height:20px;
-    margin:0;
-    padding: 0 30px;
-    width: 100%;
-} */
-
 #icon-search {
     position:absolute;
     bottom: 3.0rem;
@@ -144,17 +140,6 @@ body {
     right: 4.5rem;
     width: 1.5rem;
     height: 1.5rem;
-}
-
-  /* #ui-id-1 {
-    display: block;
-  } */
-
-.search__button {
-    /* position: absolute;
-    top:0;
-    left:0; */
-    
 }
 
 #btn {
@@ -189,13 +174,4 @@ body {
     transform: none;
     box-shadow: none;
     cursor: auto;
-}
-
-
-
-.results {
-    /* height: 50rem; */
-    /* height: 34.6rem;
-    border: 1px solid black;
-    width: 80%; */
 }
