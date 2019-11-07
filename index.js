@@ -24,11 +24,25 @@ $( function() {
 
     // Event listener for when input changes
     $( ".search__input" ).on('input', function() {
+      // Display delete button
+      $( ".search__icon--del" ).css("display", "block");
       // If user deletes the input value
       if( $( ".search__input" ).val() === "" ) {
+        // Remove delete button
+        $( ".search__icon--del" ).css("display", "none");
         // Disable the button functionality
         $(".btn").prop( "disabled", true );
       }
+    });
+
+    // Event listener for delete button
+    $( ".search__icon--del" ).click(function() {
+      // Delete the input text
+      $( ".search__input" ).val("");
+      // Remove delete button
+      $( ".search__icon--del" ).css("display", "none");
+      // Disable the button functionality
+      $(".btn").prop( "disabled", true );
     });
 
     // Event listener for search button
