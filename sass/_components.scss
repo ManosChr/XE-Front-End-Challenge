@@ -3,12 +3,12 @@
     border: 1px solid black;
     text-align: center;
 
-    @include respond(tab-land) {    //width < 1200px
+    @include respond(tab-land) {    //width <= 1200px
         order: 3;
         width: 95%;
     }
 
-    @include respond(phone) {    //width < 600px
+    @include respond(phone) {    //width <= 600px
         display: none;
     }
 }
@@ -21,7 +21,7 @@
         padding: 0 2rem;
     }
 
-    @include respond(tab-land) {    //width < 1200px
+    @include respond(tab-land) {    //width <= 1200px
         order: 1;
         padding-bottom: 1rem;
     }

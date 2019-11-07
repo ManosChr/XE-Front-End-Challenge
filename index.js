@@ -1,16 +1,16 @@
 $( function() {
     // Detect the browser language
     var userLang = (navigator.language || navigator.userLanguage).substring(0,2); 
-    console.log ("The browser language is: " + userLang);
-    
-    if($(window).width() > 1200){
+
+    // For screens >1200px call 20 menu items, otherwise call 10
+    if( $(window).width() > 1200 ) {
       autocompleteFunction(20);
     } else {
       autocompleteFunction(10);
     }
     
+    // Event listener for when the autocomplete menu opens
     $( ".search__input" ).on( "autocompleteopen", function( event, ui ) {
-        console.log("list opened");
         // Calculate the menu height
         var listHeight = $( "#ui-id-1" ).css( "height" );
         // Move the search button under the menu
@@ -19,24 +19,21 @@ $( function() {
     
     // Event listener for when the autocomplete menu closes
     $( ".search__input" ).on( "autocompleteclose", function( event, ui ) {
-        console.log("list closed");
         $(".btn").css("margin-top", "3rem");
     } );
 
     // Event listener for when input changes
     $( ".search__input" ).on('input', function() {
-      console.log( "search input: " + $( ".search__input" ).val() );
+      // If user deletes the input value
       if( $( ".search__input" ).val() === "" ) {
         // Disable the button functionality
         $(".btn").prop( "disabled", true );
-        console.log( "input null" );
       }
-      console.log( "Handler for .change() called." );
     });
 
+    // Event listener for search button
     $( ".btn" ).click(function() {
-      console.log( "Handler for .click() called." );
-      console.log( $(".search__input").value );
+      // Redirect to google with the selected search value
       window.location.href="https://www.google.com/search?q="+ $(".search__input").val();
     });
 
@@ -53,14 +50,11 @@ $( function() {
                   if(data.entries.length !== 0) {
                     // Event listener for when a menu item is selected
                     $( ".search__input" ).on( "autocompleteselect", function( event, ui ) {
-                      console.log("selected item");
-                      console.log(ui.item);
                       // Enable the button functionality
                       $(".btn").prop( "disabled", false );
                     } );
                   }
-              
-                // Transform the response to an array of objects including both value and label properties for each item
+                  // Transform the response to an array of objects including both value and label properties for each item
                   var transformed = data.entries.map(function (e, index) { return{ id:index, label:e.name }; });
                   response(transformed);
               },
