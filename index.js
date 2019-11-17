@@ -57,10 +57,13 @@ $( function() {
         source: function (request, response) {
           // API Call
           $.ajax({
-              url: "http://35.180.182.8/Search?keywords="+ this.term +"&language="+ userLang +"&limit="+ numberOfEntries,
-              data: { query: request.term },
+              url: "http://35.180.182.8/Search",
+              data: { 
+                keywords: request.term,
+                language: userLang,
+                limit: numberOfEntries 
+              },
               success: function (data) {
-
                   if(data.entries.length !== 0) {
                     // Event listener for when a menu item is selected
                     $( ".search__input" ).on( "autocompleteselect", function( event, ui ) {
